@@ -54,11 +54,18 @@ class drumStep {
 class snareStep extends drumStep {
   
   snareStep(float stepPosX, float stepPosY){
-    stepPos = new PVector(stepPosX, stepPosY);    
+    stepPos = new PVector(stepPosX, stepPosY);
+    setPitch(60);
   }
    void drawStep(){
-     fill(250,0,0);
-     ellipse(stepPos.x, stepPos.y, Radius, Radius);
+     fill(cirClr);
+     //ellipse(stepPos.x, stepPos.y, Radius, Radius);
+     imageMode(CENTER);
+     if(Radius <= 20){
+       image(dog, stepPos.x, stepPos.y);
+     } else {
+       image(dogBark, stepPos.x, stepPos.y);     
+     }
    }
 }
 
@@ -70,7 +77,7 @@ class kickStep extends drumStep {
     setPitch(40);
   }
    void drawStep(){
-     fill(250,250,0);
+     fill(sqrClr);
      rectMode(CENTER);
      rect(stepPos.x, stepPos.y, Radius, Radius);
    }
@@ -84,7 +91,7 @@ class hiStep extends drumStep {
     setPitch(50);
   }
    void drawStep(){
-     fill(0,250,250);
+     fill(triClr);
      rectMode(CENTER);
      float triRad = Radius /2;
      triangle(stepPos.x, stepPos.y-triRad, stepPos.x+triRad, stepPos.y+triRad, stepPos.x-triRad, stepPos.y+triRad);

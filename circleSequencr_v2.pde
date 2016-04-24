@@ -6,6 +6,13 @@ MidiBus myBus; // The MidiBus
 
 PVector center;
 
+color cirClr = color(140,20,0);
+color sqrClr = color(140,20,0);
+color triClr = color(140,20,0);
+color bgClr = color(230,220,200);
+
+PImage dog, dogBark;
+
 float countr = 0;
 
 float circleRad = 200;
@@ -17,6 +24,8 @@ int soundSelect = 0;
 
 void setup(){
   size(600,600);
+  dog = loadImage("sdog.png");
+  dogBark = loadImage("sdogbark.png");
   
   center = new PVector(width/2, height/2);
   
@@ -35,6 +44,8 @@ void setup(){
       .setRange(0, 180)
         ;
         
+        cp5.hide();
+        
    MidiBus.list(); // List all available Midi devices on STDOUT. This will show each device's index and name.
     myBus = new MidiBus(this, 0, 2); // Create a new MidiBus object
 }
@@ -42,7 +53,7 @@ void setup(){
 void draw(){
   smooth();
   
-  background(3,12,18);
+  background(bgClr);
   PVector rotrPos = getCirclePos(center, countr, circleRad);
   
   noFill();
