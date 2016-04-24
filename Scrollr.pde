@@ -3,7 +3,7 @@ class Trigger {
   boolean trigAvail;
   
   int trigAmount = 1;
-  int channel = 0;
+  int channel = 1;
   int pitch = 64;
   int velocity = 127;
 
@@ -18,7 +18,7 @@ class Trigger {
   void trigger() {
 
     if (trigAvail) {
-      println("Entered " + trigAmount);
+      //println("Entered " + trigAmount);
       trigAmount +=1;
       trigOff();
       sendTrigger();

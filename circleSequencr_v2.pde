@@ -11,17 +11,17 @@ float countr = 0;
 float circleRad = 200;
 float circleRad2 = 200;
 
-//drumStep[] dsArray = new drumStep[10];
-ArrayList dsArray;
+ArrayList snareArray, kickArray;
 
-drumStep ds1, ds2;
+int soundSelect = 0;
 
 void setup(){
   size(600,600);
   
   center = new PVector(width/2, height/2);
   
-  dsArray = new ArrayList();
+  snareArray = new ArrayList();
+  kickArray = new ArrayList();
   
   
    cp5 = new ControlP5(this);
@@ -58,12 +58,15 @@ void draw(){
   } else {
     countr = 0;
   }
-
-  //ds1.distTest(rotrPos);
-  //ds1.update();
     
-  for (int i = dsArray.size() - 1; i>= 0; i--) {
-    drumStep dStep = (drumStep) dsArray.get(i);
+  for (int i = snareArray.size() - 1; i>= 0; i--) {
+    snareStep dStep = (snareStep) snareArray.get(i);
+    dStep.update();
+    dStep.distTest(rotrPos);
+  }  
+  
+    for (int i = kickArray.size() - 1; i>= 0; i--) {
+    kickStep dStep = (kickStep) kickArray.get(i);
     dStep.update();
     dStep.distTest(rotrPos);
   }  
@@ -82,5 +85,26 @@ void draw(){
   }
   
  void mousePressed() {
-    dsArray.add(new drumStep(mouseX, mouseY));
+   
+    switch(soundSelect) {
+      case 0:
+        snareArray.add(new snareStep(mouseX, mouseY));
+        break;
+      case 1: 
+        kickArray.add(new kickStep(mouseX, mouseY));
+        break;
+    }
+}
+
+
+void keyPressed() {
+  
+      switch(key) {
+      case '1':
+        soundSelect = 0;
+        break;
+      case '2': 
+        soundSelect = 1;
+        break;
+    }
 }

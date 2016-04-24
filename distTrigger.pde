@@ -4,7 +4,10 @@ class drumStep {
   
   PVector stepPos;
 
-  drumStep(float stepPosX, float stepPosY) {
+  drumStep() {
+    float stepPosX = 100;
+    float stepPosY = 100;
+    
     stepPos = new PVector(stepPosX, stepPosY);
     
     drumTrig = new Trigger();
@@ -13,9 +16,19 @@ class drumStep {
   }
   
   void update() {
-    fill(250,0,0);
-    ellipse(stepPos.x, stepPos.y, 20,20);
-    //drawShape();
+    drawStep();
+  }
+  
+  void drawStep(){
+    
+  }
+  
+  void setChannel(int chan){
+   drumTrig.setChannel(chan); 
+  }
+  
+  void setPitch(int pit){
+   drumTrig.setPitch(pit); 
   }
   
   void distTest(PVector testerPos) {
@@ -31,19 +44,31 @@ class drumStep {
     
   }
   
-  //void drawStep();
-  
 }
 
 
 
-
-
-
-//class snareStep s drumStep {
+class snareStep extends drumStep {
   
-//  void drawStep(){
-//   ellipse(stepPos.x, stepPos.y, 20,20);
-//  }
+  snareStep(float stepPosX, float stepPosY){
+    stepPos = new PVector(stepPosX, stepPosY);    
+  }
+   void drawStep(){
+     fill(250,0,0);
+     ellipse(stepPos.x, stepPos.y, 20,20);
+   }
+}
+
+class kickStep extends drumStep {
   
-//}
+  kickStep(float stepPosX, float stepPosY){
+    stepPos = new PVector(stepPosX, stepPosY);
+    setChannel(2);
+    setPitch(40);
+  }
+   void drawStep(){
+     fill(250,250,0);
+     rectMode(CENTER);
+     rect(stepPos.x, stepPos.y, 20,20);
+   }
+}
