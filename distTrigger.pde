@@ -3,6 +3,7 @@ class drumStep {
   Trigger drumTrig;
   
   PVector stepPos;
+  float Radius = 20;
 
   drumStep() {
     float stepPosX = 100;
@@ -38,8 +39,10 @@ class drumStep {
     
     if(distMag < 50){
       drumTrig.trigger();
+      Radius = 30;
     } else {
-       drumTrig.trigOn(); 
+       drumTrig.trigOn();
+       Radius = 20;
     }
     
   }
@@ -55,7 +58,7 @@ class snareStep extends drumStep {
   }
    void drawStep(){
      fill(250,0,0);
-     ellipse(stepPos.x, stepPos.y, 20,20);
+     ellipse(stepPos.x, stepPos.y, Radius, Radius);
    }
 }
 
@@ -69,6 +72,21 @@ class kickStep extends drumStep {
    void drawStep(){
      fill(250,250,0);
      rectMode(CENTER);
-     rect(stepPos.x, stepPos.y, 20,20);
+     rect(stepPos.x, stepPos.y, Radius, Radius);
+   }
+}
+
+class hiStep extends drumStep {
+  
+  hiStep(float stepPosX, float stepPosY){
+    stepPos = new PVector(stepPosX, stepPosY);
+    setChannel(3);
+    setPitch(50);
+  }
+   void drawStep(){
+     fill(0,250,250);
+     rectMode(CENTER);
+     float triRad = Radius /2;
+     triangle(stepPos.x, stepPos.y-triRad, stepPos.x+triRad, stepPos.y+triRad, stepPos.x-triRad, stepPos.y+triRad);
    }
 }
