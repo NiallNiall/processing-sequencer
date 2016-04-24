@@ -118,9 +118,7 @@ void kickCircle(int sndSlct){
    for(int i=0; i < 360; i+= circleRad2){
       PVector dotPoint = getCirclePos(center, i, circleRad);
       addNewStep(sndSlct, dotPoint);
-
    } 
-  
 }
 
 
